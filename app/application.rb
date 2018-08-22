@@ -10,14 +10,14 @@ class Application
 
     if req.path.match("/items/")
       item = req.path.split("/items/").last
-      item = @@items.find do |product|
+      item_object = @@items.find do |product|
         product.name == item
         end
-        if !item
+        if !item_object
           resp.write "Item not found"
           resp.status = 400
         else
-          resp.write item.price
+          resp.write item_object.price
         end
     else
       resp.write "Route not found"
